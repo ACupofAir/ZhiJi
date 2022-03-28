@@ -6,11 +6,11 @@
         vue3支持多根节点
     </p>
     <p>
-        组件和组件文件名现在默认命名是大写驼峰了 wangjun wo shi ni die
+        组件和组件文件名现在默认命名是大写驼峰了 wangjun wo shi ni die !!!
     </p>
 </template>
 
 
 
-g
+
 
