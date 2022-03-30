@@ -73,6 +73,7 @@
         align-items: center;
         margin: 2vw;
         padding: 2vw;
+        padding-inline: 8vw;
         background-color: rgb(235, 235, 255);
         box-shadow: 2px 2px 2px 0 rgba(63, 63, 65, 0.501);
         border-radius: 2vw;
