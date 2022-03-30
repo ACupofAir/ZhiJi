@@ -25,6 +25,7 @@
 <style>
 .navi-bar {
     background-color: rgb(235, 235, 255);
+    /* background-color: #d4faa9; */
     padding: 0.4em;
     display: flex;
     align-content: center;
@@ -32,7 +33,7 @@
     box-shadow: 2px 2px 2px 0 rgba(63, 63, 65, 0.501);
     border-radius: 2vw;
     /* border: red solid 2px; */
-    margin: 2em;
+    margin: 2vw;
 }
 
 .navi-circle {
@@ -41,9 +42,10 @@
     justify-content: center;
     width: 4em;
     height: 4em;
-    margin: 1em;
+    margin: 1vw;
     border-radius: 50px;
     box-shadow: -3px -3px 3px rgb(255, 255, 255), 5px 5px 5px rgb(210 210 240);
+    /* box-shadow: -3px -3px 3px rgb(216, 243, 221), 5px 5px 5px rgb(208, 240, 211); */
     /* border: red solid 2px; */
 }
 

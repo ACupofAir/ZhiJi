@@ -17,5 +17,6 @@ import Header from './components/Header.vue'
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  /* background-color: rgb(254, 247, 255); */
 }
 </style>
