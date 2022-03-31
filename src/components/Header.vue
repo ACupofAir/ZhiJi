@@ -23,16 +23,19 @@
 </template>
 
 <style>
+
 .navi-bar {
     background-color: rgb(235, 235, 255);
-    padding: 0.4em;
+    /* background-color: #d4faa9; */
+    /* padding: 1vh; */
     display: flex;
     align-content: center;
     justify-content: center;
     box-shadow: 2px 2px 2px 0 rgba(63, 63, 65, 0.501);
     border-radius: 2vw;
     /* border: red solid 2px; */
-    margin: 2em;
+    width: 100%;
+    height: 10vh;
 }
 
 .navi-circle {
@@ -41,9 +44,10 @@
     justify-content: center;
     width: 4em;
     height: 4em;
-    margin: 1em;
+    margin: 1vw;
     border-radius: 50px;
     box-shadow: -3px -3px 3px rgb(255, 255, 255), 5px 5px 5px rgb(210 210 240);
+    /* box-shadow: -3px -3px 3px rgb(216, 243, 221), 5px 5px 5px rgb(208, 240, 211); */
     /* border: red solid 2px; */
 }
 
