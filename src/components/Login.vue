@@ -4,11 +4,11 @@
             <div class="modal-main">
                 <div class="input-box">
                     Username:
-                    <input type="text" v-model="username" placeholder="请输入用户名" />
+                    <input type="text" v-model="usernameInput" placeholder="请输入用户名" />
                 </div>
                 <div class="input-box">
                     Password:
-                    <input type="text" v-model="password" placeholder="请输入密码" />
+                    <input type="text" v-model="passwordInput" placeholder="请输入密码" />
                 </div>
             </div>
             <div id="btn-login" @click="login">
@@ -36,17 +36,30 @@
         ],
 
         setup(props, { emit }) {
-            const username = ref('');
-            const password = ref('');
+            let user = ref({
+                username: 'hello',
+                password: '',
+                nickname: 'hi',
+                email: ''
+            });
+            const usernameInput = ref('');
+            const passwordInput = ref('');
 
-            const login = () => {
-                emit('update-user', username.value);
+            let login = () => {
+                fetch('http://localhost:8081/user/'+usernameInput.value, {
+                }).then(res => res.json()).then(res => {
+                    console.log(res);
+                    user.value = res;
+                    emit('update-user', user);
+                });
             };
+
 
             return {
                 //Data:
-                username,
-                password,
+                user,
+                usernameInput,
+                passwordInput,
 
                 //Function:
                 login
@@ -76,8 +89,8 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 300px;
-        height: 200px;
+        width: 30vw;
+        height: 20vw;
         background-color: rgb(235, 235, 255);
         box-shadow: 0.5vw 0.5vw 0.5vw 0 rgba(63, 63, 65, 0.501);
         border-radius: 3vw;
@@ -90,6 +103,7 @@
         flex-direction: column;
         /* padding-top: 10vh;
         padding-bottom: 10vh; */
+        /* padding-inline: 2vw; */
         top: 50%;
         left: 50%;
         position: relative;
@@ -108,7 +122,7 @@
 
     #btn-login {
         /* border: red solid 2px; */
-        margin-bottom: 2vh;
+        margin-bottom: 10%;
         margin-inline: 12vw;
         border-radius: 2vw;
         position: relative;

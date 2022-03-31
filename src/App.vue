@@ -11,12 +11,19 @@ import Header from './components/Header.vue'
 
 <style>
 #app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin-inline: 20%;
+
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+
   /* background-color: rgb(254, 247, 255); */
 }
 </style>

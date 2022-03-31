@@ -6,17 +6,17 @@
         </div>
         <div class="info-card">
             <div class="info-item">
-                Username: {{username}}
+                Username: {{user.username}}
             </div>
             <div class="info-item">
-                UserId: {{username}}
+                Nickname: {{user.nickname}}
             </div>
             <div class="info-item">
-                email: {{username}}
+                Email: {{user.email}}
             </div>
-            <div class="info-item">
-                link: {{username}}
-            </div>
+        </div>
+        <div class="info-detail">
+            {{infoDetail}}
         </div>
         <!-- 登陆弹窗 -->
         <Login :show="showLogin" @update-user="updateUser"></Login>
@@ -35,14 +35,22 @@
         setup() {
             const isloggedIn = ref(false);
             const showLogin = ref(false);
-            const username = ref("去登陆");
+            let user = ref({
+                username: '去登陆',
+                password: '',
+                nickname: '请登录',
+                email: ''
+            });
+
+            const infoDetail = ref("是一个很牛逼的人啊");
 
             const showModal = () => {
                 showLogin.value = !showLogin.value;
             };
 
-            const updateUser = (name) => {
-                username.value = name;
+            const updateUser = (userInput) => {
+                user.value = userInput.value;
+                console.log(user);
                 showLogin.value = false;
             };
 
@@ -53,9 +61,10 @@
 
             return {
                 //Data:
-                username,
+                user,
                 isloggedIn,
                 showLogin,
+                infoDetail,
 
                 //Function:
                 showModal,
@@ -68,41 +77,20 @@
 
 <style>
     .profile {
-        /* border: red solid 2px; */
         display: flex;
         align-items: center;
-        margin: 2vw;
-        padding: 2vw;
-        padding-inline: 8vw;
+        height: 15vh;
+        width: 100%;
+        margin-top: 2vh;
+        /* margin-inline: 2vw; */
+        padding-top: 2vw;
+        padding-bottom: 2vw;
         background-color: rgb(235, 235, 255);
         box-shadow: 2px 2px 2px 0 rgba(63, 63, 65, 0.501);
         border-radius: 2vw;
     }
 
-    .info-card {
-        /* border: red solid 2px; */
-        display: flex;
-        justify-content: center;
-        /* align-items: center; */
-        flex-direction: column;
-
-        /* 为了info-item中最后一个底下的margin-bottom:2vh对齐 */
-        padding-top: 2vh;
-        margin-left: 6vw;
-        /* padding: 2vw; */
-    }
-
-    .info-item {
-        display: inline-flex;
-        padding: 1vh;
-        margin-bottom: 2vh;
-
-        border-radius: 1vw;
-        box-shadow: -3px -3px 3px rgb(255, 255, 255), 5px 5px 5px rgb(210 210 240);
-    }
-
     .avatar {
-        /* border: red solid 2px; */
         /* background-color: rgb(235, 235, 255); */
         display: flex;
         align-items: center;
@@ -110,9 +98,10 @@
 
         background-color: rgb(255, 255, 255);
         box-shadow: -3px -3px 3px rgb(255, 255, 255), 5px 5px 5px rgb(210 210 240);
-        width: 15vw;
-        height: 15vw;
-        line-height: 15vw;
+        width: 15vh;
+        height: 15vh;
+        line-height: 15vh;
+        margin-left: 4%;
         /* padding-top: 15%;
         padding-bottom: 15%; */
         border-radius: 50%;
@@ -129,5 +118,50 @@
         width: 100%;
         height: 100%;
         border-radius: 50%;
+    }
+
+    .info-card {
+        display: flex;
+        justify-content: center;
+        /* align-items: center; */
+        flex-direction: column;
+
+        height: 100%;
+        width: 20%;
+
+        /* 为了info-item中最后一个底下的margin-bottom:2vh对齐 */
+        padding-top: 2vh;
+
+        margin-left: 4vw;
+        /* padding: 2vw; */
+    }
+
+    .info-item {
+        display: inline-flex;
+        padding: 1vh;
+        margin-bottom: 2vh;
+
+        border-radius: 1vw;
+        box-shadow: -3px -3px 3px rgb(255, 255, 255), 5px 5px 5px rgb(210 210 240);
+    }
+
+    .info-detail {
+        display: inline-flex;
+
+        height: 80%;
+        width: 45%;
+
+        margin-left: 4%;
+        margin-right: 4%;
+        margin-top: 2vh;
+        margin-bottom: 2vh;
+
+        padding-top: 2vh;
+        padding-bottom: 2vh;
+        padding-top: 2vh;
+        padding-inline: 1vw;
+
+        border-radius: 1vw;
+        box-shadow: -3px -3px 3px rgb(255, 255, 255), 5px 5px 5px rgb(210 210 240);
     }
 </style>

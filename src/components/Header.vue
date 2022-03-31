@@ -23,17 +23,19 @@
 </template>
 
 <style>
+
 .navi-bar {
     background-color: rgb(235, 235, 255);
     /* background-color: #d4faa9; */
-    padding: 0.4em;
+    /* padding: 1vh; */
     display: flex;
     align-content: center;
     justify-content: center;
     box-shadow: 2px 2px 2px 0 rgba(63, 63, 65, 0.501);
     border-radius: 2vw;
     /* border: red solid 2px; */
-    margin: 2vw;
+    width: 100%;
+    height: 10vh;
 }
 
 .navi-circle {
