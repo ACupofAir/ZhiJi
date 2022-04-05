@@ -1,4 +1,5 @@
 <template>
+
   <!-- 左右两侧点击切换帖子的按钮？为啥一定要用按钮呢 -->
   <!-- <div style="width: 18%; height: 2048px;margin: 0 auto; cursor: pointer; float: left;">
       <button style="width: 100%; height: 100%; margin: 0; cursor: pointer; background-color: unset; border: white"
@@ -21,21 +22,28 @@
 
         <!--短文-->
         <div class="post-content">
-          <p class="post-preview">
-            今天小红和小明一起走路，小红发现小明档开了，为了维护小明自尊心，小红不想提醒小明，可又想到这样小明会被大家嘲笑的，小红心中了有了一丝犹豫，请问小红该怎么办呢？
-                           <!-- {{msg}} -->
-          </p>
-          <button style="margin: 0px 20px 20px 20px; cursor: pointer">展开</button>
+          <div v-show="isflag===1">
+            <p class="post-preview">
+              {{msg.substring(0,160)}}
+            </p>
+            <button style="margin: 0px 20px 20px 20px; cursor: pointer" v-show="msg.length>160" @click="unfold">展开</button>
+          </div>
+          <div v-show="isflag===2">
+            <p class="post-preview">
+              {{msg}}
+            </p>
+            <button style="margin: 0px 20px 20px 20px; cursor: pointer" v-show="msg.length>160" @click="unfold">收起</button>
+          </div>
         </div>
 
         <!-- 点赞评论可以考虑放在用户名后面，那条栏太空了，如果有张开功能，你放底下张开后它不被挤走了吗 -->
       </div>
-      <!-- <div style="margin-left: 10px;margin-bottom: 10px">
-        <button style="margin-left: 10px;margin-bottom: 10px; cursor: pointer" @click="like">点赞</button>
-        <span class="icon-active" icon="icon-link" style="margin-left: 10px;margin-bottom: 10px">{{ likes }}</span>
-        <button style="margin-left: 10px;margin-bottom: 10px; cursor: pointer" @click="comment">评论</button>
-        <span class="icon-active" icon="icon-link" style="margin-left: 10px;margin-bottom: 10px">9</span>
-      </div> -->
+<!--      <div style="margin-left: 10px;margin-bottom: 10px">-->
+<!--        <button style="margin-left: 10px;margin-bottom: 10px; cursor: pointer" @click="like">点赞</button>-->
+<!--        <span class="icon-active" icon="icon-link" style="margin-left: 10px;margin-bottom: 10px">{{ likes }}</span>-->
+<!--        <button style="margin-left: 10px;margin-bottom: 10px; cursor: pointer" @click="comment">评论</button>-->
+<!--        <span class="icon-active" icon="icon-link" style="margin-left: 10px;margin-bottom: 10px">9</span>-->
+<!--      </div>-->
     </div>
 
     <!-- 分割线 -->
@@ -55,63 +63,45 @@
 </template>
 
 <script>
-  import Comment from '../components/Comment.vue'
-
-  export default {
-    components: {
-      Comment
+export default {
+  data() {
+    return {
+      msg: "今天小红和小明一起走路，小红发现小明档开了，为了维护小明自尊心，小红不想提醒小明，可又想到这样小明会被大家嘲笑的，小红心中了有了一丝犹豫，请问小红该怎么办呢？今天小红和小明一起走路，小红发现小明档开了，为了维护小明自尊心，小红不想提醒小明，可又想到这样小明会被大家嘲笑的，小红心中了有了一丝犹豫，请问小红该怎么办呢？今天小红和小明一起走路，小红发现小明档开了，为了维护小明自尊心，小红不想提醒小明，可又想到这样小明会被大家嘲笑的，小红心中了有了一丝犹豫，请问小红该怎么办呢？今天小红和小明一起走路，小红发现小明档开了，为了维护小明自尊心，小红不想提醒小明，可又想到这样小明会被大家嘲笑的，小红心中了有了一丝犹豫，请问小红该怎么办呢？",
+      isfold: true,
+      isflag: 1,
+    };
+  },
+  created() {
+  },
+  methods: {
+    unfold() {
+      this.isfold = !this.isfold;
+      this.isfold === true?(this.isflag = 1):(this.isflag = 2);
     },
-
-    setup() {
-      function handleSizeChange(val) {
-        console.log(`每页 ${val} 条`);
-      };
-      function handleCurrentChange(val) {
-        console.log(`当前页: ${val}`);
-      };
-      function handleClick(tab, event) {
-        console.log(tab, event);
-      };
-      function last() {
-        //上一条
-      };
-      function next() {
-        //下一条
-      };
-      function unfold() {
-        //展开
-      };
-      function like() {
-        //实现点赞功能
-        this.likes++
-      };
-      function comment() {
-        //实现评论功能
-
-      };
-
-      // 所以变量不返回则无法被template调用，只可用于以上函数作用域内
-      return {
-        img: "src/assets/images/photo_2022-03-22_18-21-29.jpg",
-        msg: "aaa",
-        likes: 0,
-        value: new Date(),
-        currentPage: 4,
-        activeName: 'second',
-      }
-    }
-  };
-
-
-
+  },
+  components:{},
+};
 </script>
+<script setup>
+  import Comment from '../components/Comment.vue';
+  import {ref} from "vue";
+  // const msg = ref("今天小红和小明一起走路，小红发现小明档开了，为了维护小明自尊心，小红不想提醒小明，可又想到这样小明会被大家嘲笑的，小红心中了有了一丝犹豫，请问小红该怎么办呢？今天小红和小明一起走路，小红发现小明档开了，为了维护小明自尊心，小红不想提醒小明，可又想到这样小明会被大家嘲笑的，小红心中了有了一丝犹豫，请问小红该怎么办呢？今天小红和小明一起走路，小红发现小明档开了，为了维护小明自尊心，小红不想提醒小明，可又想到这样小明会被大家嘲笑的，小红心中了有了一丝犹豫，请问小红该怎么办呢？今天小红和小明一起走路，小红发现小明档开了，为了维护小明自尊心，小红不想提醒小明，可又想到这样小明会被大家嘲笑的，小红心中了有了一丝犹豫，请问小红该怎么办呢？")
+  // const isfold = ref(true);
+  // const isflag = ref(1);
+  // function unfold(){
+  //   this.isfold = !this.isfold;
+  //   this.isfold === true?(this.isflag = 1):(this.isflag = 2);
+  // }
+</script>
+
 
 <style>
   .main-container {
     box-shadow: 2px 2px 2px 0 rgba(63, 63, 65, 0.501);
     border-radius: 2vw;
     margin-top: 2vh;
-
+    width: 100%;
+    /*min-width: 150vh;*/
     display: flex;
     flex-direction: column;
 
@@ -124,6 +114,7 @@
   .post {
     margin-top: 2em;
     margin-inline: 4%;
+    min-width: 90%;
   }
 
   .post img {
@@ -152,6 +143,7 @@
     box-shadow: -3px -3px 3px rgb(255, 255, 255), 5px 5px 5px rgb(210 210 240);
     border-radius: 2em;
     height: 4em;
+    width: 100%;
     display: flex;
     align-items: center;
   }
@@ -216,3 +208,58 @@
     width: 100%;
   }
 </style>
+
+<!--<script>-->
+<!--  import Comment from '../components/Comment.vue'-->
+
+<!--  export default {-->
+<!--    components: {-->
+<!--      Comment-->
+<!--    },-->
+
+<!--    setup() {-->
+<!--      function handleSizeChange(val) {-->
+<!--        console.log(`每页 ${val} 条`);-->
+<!--      };-->
+<!--      function handleCurrentChange(val) {-->
+<!--        console.log(`当前页: ${val}`);-->
+<!--      };-->
+<!--      function handleClick(tab, event) {-->
+<!--        console.log(tab, event);-->
+<!--      };-->
+<!--      function last() {-->
+<!--        //上一条-->
+<!--      };-->
+<!--      function next() {-->
+<!--        //下一条-->
+<!--      };-->
+<!--      function unfold() {-->
+<!--        //展开-->
+
+<!--      };-->
+<!--      function like() {-->
+<!--        //实现点赞功能-->
+<!--        this.likes++-->
+
+<!--      };-->
+<!--      function comment() {-->
+<!--        //实现评论功能-->
+
+<!--      };-->
+
+<!--      // 所以变量不返回则无法被template调用，只可用于以上函数作用域内-->
+<!--      return {-->
+<!--        img: "src/assets/images/photo_2022-03-22_18-21-29.jpg",-->
+<!--        msg: "aaa",-->
+<!--        likes: 0,-->
+<!--        iflike:0,-->
+<!--        value: new Date(),-->
+<!--        currentPage: 4,-->
+<!--        activeName: 'second',-->
+<!--      }-->
+<!--    }-->
+<!--  };-->
+
+
+
+<!--</script>-->
