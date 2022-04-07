@@ -38,7 +38,7 @@
                 hello
             </div>
             <!--                {{ msg}}-->
-            <button class="comment-fold">展开</button>
+            <a class="foldbutton" >展开</a>
         </div>
 
     </div>
@@ -104,6 +104,12 @@
         margin-top: 2em;
         margin-inline: 4%;
         cursor: pointer;
+    }
+
+    .foldbutton {
+      margin: 0px 20px 20px 20px;
+      cursor: pointer;
+      color: #7b4483;
     }
 </style>
 

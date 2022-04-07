@@ -25,14 +25,14 @@
           <div v-show="isflag===1">
             <p class="post-preview">
               {{msg.substring(0,160)}}
+              <a class="foldbutton" v-show="msg.length>160" @click="unfold">......展开</a>
             </p>
-            <button style="margin: 0px 20px 20px 20px; cursor: pointer" v-show="msg.length>160" @click="unfold">展开</button>
           </div>
           <div v-show="isflag===2">
             <p class="post-preview">
               {{msg}}
+              <a class="foldbutton" v-show="msg.length>160" @click="unfold">收起</a>
             </p>
-            <button style="margin: 0px 20px 20px 20px; cursor: pointer" v-show="msg.length>160" @click="unfold">收起</button>
           </div>
         </div>
 
@@ -199,6 +199,12 @@ export default {
     margin-top: 3em;
     border: solid transparent;
     background: linear-gradient(white, white) padding-box, repeating-linear-gradient(-45deg, red 0, red 12.5%, transparent 0, transparent 25%, #58a 0, #58a 37.5%, transparent 0, transparent 50%) 0/4em 4em;
+  }
+
+  .foldbutton {
+    margin: 0px 20px 20px 20px;
+    cursor: pointer;
+    color: #7b4483;
   }
 
   .comments {
