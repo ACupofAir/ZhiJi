@@ -1,6 +1,21 @@
 <script setup>
-</script>
+  import {ref} from "vue";
 
+  const islike = ref(0)
+  const likes = ref(88)
+
+  function like(){
+    //点一下赞加一，再点一下减一
+    if (this.islike === 0) {
+      this.islike = 1;
+      this.likes++;
+    } else {
+      this.islike = 0;
+      this.likes--;
+    }
+
+  }
+</script>
 <template>
     <div class="comment">
 
@@ -9,6 +24,12 @@
             <image class="comment-bar-avatar" src="src/assets/images/photo_2022-03-22_18-21-29.jpg">
             </image>
             <div class="comment-bar-funcs">评论a, 点赞等功能</div>
+                <div style="margin-left: 1em;margin-bottom: 0">
+                  <button style="margin-left: 1em;margin-bottom: 0; cursor: pointer" @click="like()">点赞</button>
+                  <span class="icon-active" icon="icon-link" style="margin-left: 1em;margin-bottom: 1em">{{ likes }}</span>
+                  <button style="margin-left: 1em;margin-bottom: 0; cursor: pointer" @click="comment">评论</button>
+                  <span class="icon-active" icon="icon-link" style="margin-left: 1em;margin-bottom: 1em">9</span>
+                </div>
         </div>
 
         <div class="comment-content">
@@ -17,7 +38,7 @@
                 hello
             </div>
             <!--                {{ msg}}-->
-            <button class="comment-fold">展开</button>
+            <a class="foldbutton" >展开</a>
         </div>
 
     </div>
@@ -47,7 +68,7 @@
         object-fit: cover;
         border-radius: 50%;
         cursor: pointer;
-        float: left,
+        float: left;
     }
 
     .comment-bar-funcs {
@@ -82,5 +103,13 @@
         /* border: red solid 2px; */
         margin-top: 2em;
         margin-inline: 4%;
+        cursor: pointer;
+    }
+
+    .foldbutton {
+      margin: 0px 20px 20px 20px;
+      cursor: pointer;
+      color: #7b4483;
     }
 </style>
+
